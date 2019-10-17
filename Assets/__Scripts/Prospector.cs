@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
@@ -11,10 +11,13 @@ public class Prospector : MonoBehaviour {
 
 	[Header("Set in Inspector")]
 	public TextAsset			deckXML;
+    public TextAsset            layoutXML;
+    public List<CardProspector> drawPile; 
 
 
 	[Header("Set Dynamically")]
 	public Deck					deck;
+    public Layout               layout;
 
 	void Awake(){
 		S = this;
@@ -23,6 +26,23 @@ public class Prospector : MonoBehaviour {
 	void Start() {
 		deck = GetComponent<Deck> ();
 		deck.InitDeck (deckXML.text);
+        Deck.Shuffle(ref deck.cards);
+
+        layout = GetComponent<Layout>();
+        layout.ReadLayout(layoutXML.text);
+        drawPile = ConvertListCardsToListCardProspectors(deck.cards);
 	}
+    List<CardProspector> ConvertListCardsToListCardProspectors(List<Card> lCD)
+    {
+        List<CardProspector> lCP = new List<CardProspector>();
+        CardProspector tCP;
+        foreach (Card tCD in lCD)
+        {
+            tCP = tCD as CardProspector;
+            lCP.Add(tCP);
+        }
+        return (lCP);
+
+    }
 
 }

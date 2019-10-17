@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 
 /*
@@ -17,7 +18,7 @@ XMLHashtable xml;
 xml["jeremy"][0]["friend"][0].text
 xml["jeremy"][0].att("age");
 */
-		
+
 
 
 [System.Serializable]
@@ -47,9 +48,14 @@ public class PT_XMLReader {
 		xml = new PT_XMLHashtable();
 		Parse(eS, xml);
 	}
-	
-	// This function will parse a possible series of tags
-	void Parse(string eS, PT_XMLHashtable eH) {
+
+    internal void Parse(object xmlText)
+    {
+        throw new NotImplementedException();
+    }
+
+    // This function will parse a possible series of tags
+    void Parse(string eS, PT_XMLHashtable eH) {
 		eS = eS.Trim();
 		while(eS.Length > 0) {
 			eS = ParseTag(eS, eH);

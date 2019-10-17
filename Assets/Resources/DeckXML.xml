@@ -9,8 +9,7 @@
 		<pip x="0" y="0" z="0" flip="0" scale="2"/>
 	</card>
 	<card rank="2">
-		<pip x="0" y="1.1" z="0" flip="0"/>
-		<pip x="0" y="-1.1" z="0" flip="1"/>
+		<pip x="0" y="0" z="0" flip="0" scale="2"/>
 	</card>
 	<card rank="3">
 		<pip x="0" y="1.1" z="0" flip="0"/>
