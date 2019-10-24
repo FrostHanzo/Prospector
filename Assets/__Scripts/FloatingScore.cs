@@ -48,7 +48,7 @@ public class FloatingScore : MonoBehaviour
 
         txt = GetComponent<Text>();
 
-        bezierPts = new list<Vector2>(ePts);
+        bezierPts = new List<Vector2>(ePts);
 
         if (ePts.Count == 1)
         {
@@ -104,6 +104,14 @@ public class FloatingScore : MonoBehaviour
             {
                 state = eFSState.active;
                 txt.enabled = true;
+            }
+            Vector2 pos = Utils.Bezier(uC, bezierPts);
+
+            rectTrans.anchorMin = rectTrans.anchorMax = pos;
+            if(fontSizes != null && fontSizes.Count > 0)
+            {
+                int size = Mathf.RoundToInt(Utils.Bezier(uC, fontSizes));
+                GetComponent<Text>().fontSize = size;
             }
         }
     }
